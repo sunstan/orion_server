@@ -1,11 +1,10 @@
-import {Field, InputType} from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
 export class CreatePostInput {
+  @Field()
+  readonly content: string;
 
-    @Field()
-    readonly content: string;
-
-    @Field({nullable: true})
-    readonly parentId?: number;
+  @Field({ nullable: true })
+  readonly parentId?: number;
 }

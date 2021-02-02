@@ -1,41 +1,40 @@
-import {Field, ObjectType} from '@nestjs/graphql';
-import {Type} from '@nestjs/common';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { Type } from '@nestjs/common';
 
 export interface EdgeType<T> {
-    readonly node: T;
-    readonly cursor: string;
+  readonly node: T;
+  readonly cursor: string;
 }
 
 export interface CursorPaginatedModel<T> {
-    readonly edges: EdgeType<T>[];
-    readonly nodes: T[];
-    readonly hasMore: boolean;
+  readonly edges: EdgeType<T>[];
+  readonly nodes: T[];
+  readonly hasMore: boolean;
 }
 
-export function CursorPaginatedOutput<T>(classRef: Type<T>): Type<CursorPaginatedModel<T>> {
+export function CursorPaginatedOutput<T>(
+  classRef: Type<T>,
+): Type<CursorPaginatedModel<T>> {
+  @ObjectType(`${classRef.name}Edge`, { isAbstract: true })
+  abstract class EdgesType<T> {
+    @Field(() => classRef, { nullable: true })
+    readonly node: T;
 
-    @ObjectType(`${classRef.name}Edge`, {isAbstract: true})
-    abstract class EdgesType<T> {
+    @Field(() => String, { nullable: true })
+    readonly cursor: string;
+  }
 
-        @Field(() => classRef, {nullable: true})
-        readonly node: T;
+  @ObjectType({ isAbstract: true })
+  abstract class CursorPaginatedOutputClass<T> {
+    @Field(() => [EdgesType], { nullable: true })
+    readonly edges?: EdgesType<T>[];
 
-        @Field(() => String, {nullable: true})
-        readonly cursor: string;
-    }
+    @Field(() => [classRef], { nullable: true })
+    readonly nodes?: T[];
 
-    @ObjectType({isAbstract: true})
-    abstract class CursorPaginatedOutputClass<T> {
+    @Field(() => Boolean)
+    readonly hasMore: boolean;
+  }
 
-        @Field(() => [EdgesType], {nullable: true})
-        readonly edges?: EdgesType<T>[];
-
-        @Field(() => [classRef], {nullable: true})
-        readonly nodes?: T[];
-
-        @Field(() => Boolean)
-        readonly hasMore: boolean;
-    }
-
-    return CursorPaginatedOutputClass as any;
+  return CursorPaginatedOutputClass as any;
 }
