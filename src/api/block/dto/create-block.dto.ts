@@ -1,4 +1,4 @@
-import { User } from '@/core/auth/modules/user/user.entity';
+import {User} from '@/core/auth/modules/user/user.entity';
 
 export class CreateBlockDto {
   readonly emitter: User;

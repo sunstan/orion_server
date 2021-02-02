@@ -7,12 +7,12 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { User } from '@/core/auth/modules/user/user.entity';
-import { Like } from '../like/like.entity';
+import {Field, Int, ObjectType} from '@nestjs/graphql';
+import {User} from '@/core/auth/modules/user/user.entity';
+import {Like} from '../like/like.entity';
 
 @ObjectType()
-@Entity({ name: 'posts' })
+@Entity({name: 'posts'})
 export class Post {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
@@ -30,8 +30,8 @@ export class Post {
   @UpdateDateColumn()
   readonly updatedAt: Date;
 
-  @Field({ nullable: true })
-  @DeleteDateColumn({ nullable: true })
+  @Field({nullable: true})
+  @DeleteDateColumn({nullable: true})
   readonly deletedAt?: Date;
 
   @Field(() => User)
@@ -39,15 +39,15 @@ export class Post {
   readonly author: Promise<User>;
 
   @Field(() => Post)
-  @ManyToOne(() => Post, (post) => post.children, { nullable: true })
+  @ManyToOne(() => Post, (post) => post.children, {nullable: true})
   readonly parent: Promise<Post>;
 
   @Field(() => [Post])
-  @ManyToOne(() => Post, (post) => post.parent, { nullable: true })
+  @ManyToOne(() => Post, (post) => post.parent, {nullable: true})
   readonly children: Promise<Post[]>;
 
   @Field(() => [Like])
-  @ManyToOne(() => Like, (like) => like.post, { nullable: true })
+  @ManyToOne(() => Like, (like) => like.post, {nullable: true})
   readonly likes: Promise<Like[]>;
 
   constructor(item?: Partial<Post>) {

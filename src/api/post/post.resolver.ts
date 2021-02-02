@@ -1,20 +1,20 @@
-import { IsNull, LessThan } from 'typeorm';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { nodesToEdges, arrayFromCursor } from '@/core/utils/cursors';
-import { GqlCurrentUser } from '@/core/decorators/gql-current-user.decorator';
+import {IsNull, LessThan} from 'typeorm';
+import {Args, Mutation, Query, Resolver} from '@nestjs/graphql';
+import {nodesToEdges, arrayFromCursor} from '@/core/utils/cursors';
+import {GqlCurrentUser} from '@/core/decorators/gql-current-user.decorator';
 import {
   BadRequestException,
   NotFoundException,
   UseGuards,
 } from '@nestjs/common';
-import { CreatePostInput } from './inputs/create-post.input';
-import { GqlAuthGuard } from '@/core/guards/gql-auth.guard';
-import { User } from '@/core/auth/modules/user/user.entity';
-import { CreatePostDto } from './dto/create-post.dto';
-import { PostsOutput } from './outputs/posts.output';
-import { PostsInput } from './inputs/posts.input';
-import { PostService } from './post.service';
-import { Post } from './post.entity';
+import {CreatePostInput} from './inputs/create-post.input';
+import {GqlAuthGuard} from '@/core/guards/gql-auth.guard';
+import {User} from '@/core/auth/modules/user/user.entity';
+import {CreatePostDto} from './dto/create-post.dto';
+import {PostsOutput} from './outputs/posts.output';
+import {PostsInput} from './inputs/posts.input';
+import {PostService} from './post.service';
+import {Post} from './post.entity';
 
 @Resolver(() => Post)
 @UseGuards(GqlAuthGuard)
@@ -23,9 +23,9 @@ export class PostResolver {
 
   @Query(() => PostsOutput)
   async posts(@Args('input') input: PostsInput): Promise<PostsOutput> {
-    const { take, cursor } = input;
-    const order: any = { id: 'DESC' };
-    const where: any = { parent: IsNull() };
+    const {take, cursor} = input;
+    const order: any = {id: 'DESC'};
+    const where: any = {parent: IsNull()};
 
     if (cursor) {
       const [id, date] = arrayFromCursor(cursor);
@@ -41,7 +41,7 @@ export class PostResolver {
     const edges = nodesToEdges(nodes);
     const hasMore = nodes.length >= take;
 
-    return { edges, nodes, hasMore };
+    return {edges, nodes, hasMore};
   }
 
   @Mutation(() => Post)
@@ -49,15 +49,15 @@ export class PostResolver {
     @GqlCurrentUser() currentUser: User,
     @Args('input') input: CreatePostInput,
   ): Promise<Post> {
-    const { content, parentId } = input;
+    const {content, parentId} = input;
 
     if (!content) throw new BadRequestException('Content is required');
-    let data: CreatePostDto = { content, author: currentUser };
+    let data: CreatePostDto = {content, author: currentUser};
 
     if (parentId) {
       const parent = await this.postService.repository.findOne(parentId);
       if (!parent) throw new NotFoundException('Parent not found');
-      else data = { ...data, parent };
+      else data = {...data, parent};
     }
 
     return await this.postService.repository.createPost(data);

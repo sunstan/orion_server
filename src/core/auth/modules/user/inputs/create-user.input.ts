@@ -1,6 +1,6 @@
-import { Field, InputType } from '@nestjs/graphql';
-import { UserRoles } from '../enums/user-roles.enum';
-import { UserGenders } from '@/core/auth/modules/user/enums/user-genders.enum';
+import {Field, InputType} from '@nestjs/graphql';
+import {UserRoles} from '../enums/user-roles.enum';
+import {UserGenders} from '@/core/auth/modules/user/enums/user-genders.enum';
 
 @InputType()
 export class CreateUserInput {
@@ -22,6 +22,6 @@ export class CreateUserInput {
   @Field(() => UserGenders)
   readonly gender: UserGenders;
 
-  @Field(() => [UserRoles], { nullable: true })
+  @Field(() => [UserRoles], {nullable: true})
   readonly roles?: UserRoles[];
 }

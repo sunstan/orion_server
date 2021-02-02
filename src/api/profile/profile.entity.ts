@@ -7,11 +7,11 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { User } from '@/core/auth/modules/user/user.entity';
+import {Field, Int, ObjectType} from '@nestjs/graphql';
+import {User} from '@/core/auth/modules/user/user.entity';
 
 @ObjectType()
-@Entity({ name: 'profiles' })
+@Entity({name: 'profiles'})
 export class Profile {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
@@ -31,8 +31,8 @@ export class Profile {
   @UpdateDateColumn()
   readonly updatedAt: Date;
 
-  @Field({ nullable: true })
-  @DeleteDateColumn({ nullable: true })
+  @Field({nullable: true})
+  @DeleteDateColumn({nullable: true})
   readonly deletedAt?: Date;
 
   @Field(() => User)

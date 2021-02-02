@@ -1,10 +1,10 @@
-import { forwardRef, Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ReportRepository } from './report.repository';
-import { ReportResolver } from './report.resolver';
-import { ReportService } from './report.service';
-import { ProfileModule } from '../profile/profile.module';
-import { PostModule } from '../post/post.module';
+import {forwardRef, Module} from '@nestjs/common';
+import {TypeOrmModule} from '@nestjs/typeorm';
+import {ReportRepository} from './report.repository';
+import {ReportResolver} from './report.resolver';
+import {ReportService} from './report.service';
+import {ProfileModule} from '../profile/profile.module';
+import {PostModule} from '../post/post.module';
 
 @Module({
   imports: [

@@ -1,5 +1,5 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Entity, Generated } from 'typeorm';
+import {Field, Int, ObjectType} from '@nestjs/graphql';
+import {Entity, Generated} from 'typeorm';
 import {
   Column,
   CreateDateColumn,
@@ -7,11 +7,11 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserRoles } from './enums/user-roles.enum';
-import { UserGenders } from '@/core/auth/modules/user/enums/user-genders.enum';
+import {UserRoles} from './enums/user-roles.enum';
+import {UserGenders} from '@/core/auth/modules/user/enums/user-genders.enum';
 
 @ObjectType()
-@Entity({ name: 'users' })
+@Entity({name: 'users'})
 export class User {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
@@ -23,11 +23,11 @@ export class User {
   readonly pid: string;
 
   @Field(() => UserGenders)
-  @Column('enum', { enum: UserGenders })
+  @Column('enum', {enum: UserGenders})
   readonly gender: UserGenders;
 
   @Field(() => [UserRoles])
-  @Column('set', { enum: UserRoles, default: [UserRoles.STUDENT] })
+  @Column('set', {enum: UserRoles, default: [UserRoles.STUDENT]})
   readonly roles: UserRoles[];
 
   @Field()
@@ -54,8 +54,8 @@ export class User {
   @UpdateDateColumn()
   readonly updatedAt: Date;
 
-  @Field({ nullable: true })
-  @DeleteDateColumn({ nullable: true })
+  @Field({nullable: true})
+  @DeleteDateColumn({nullable: true})
   readonly deletedAt?: Date;
 
   constructor(item?: Partial<User>) {

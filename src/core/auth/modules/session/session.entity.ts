@@ -1,15 +1,15 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Entity, Generated, ManyToOne } from 'typeorm';
+import {Field, Int, ObjectType} from '@nestjs/graphql';
+import {Entity, Generated, ManyToOne} from 'typeorm';
 import {
   Column,
   CreateDateColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { User } from '../user/user.entity';
+import {User} from '../user/user.entity';
 
 @ObjectType()
-@Entity({ name: 'sessions' })
+@Entity({name: 'sessions'})
 export class Session {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
@@ -21,7 +21,7 @@ export class Session {
   readonly refreshToken: string;
 
   @Field(() => Boolean)
-  @Column({ default: true })
+  @Column({default: true})
   readonly isValid: boolean;
 
   @Field()

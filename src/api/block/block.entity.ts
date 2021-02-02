@@ -4,11 +4,11 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { User } from '@/core/auth/modules/user/user.entity';
+import {Field, Int, ObjectType} from '@nestjs/graphql';
+import {User} from '@/core/auth/modules/user/user.entity';
 
 @ObjectType()
-@Entity({ name: 'blocks' })
+@Entity({name: 'blocks'})
 export class Block {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
@@ -19,11 +19,11 @@ export class Block {
   readonly createdAt: Date;
 
   @Field(() => User)
-  @ManyToOne(() => User, { eager: true })
+  @ManyToOne(() => User, {eager: true})
   readonly emitter: Promise<User>;
 
   @Field(() => User)
-  @ManyToOne(() => User, { eager: true })
+  @ManyToOne(() => User, {eager: true})
   readonly receiver: Promise<User>;
 
   constructor(item?: Partial<Block>) {

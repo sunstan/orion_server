@@ -1,4 +1,4 @@
-import { registerEnumType } from '@nestjs/graphql';
+import {registerEnumType} from '@nestjs/graphql';
 
 export enum ReportStatus {
   PENDING = 'PENDING',
@@ -6,4 +6,4 @@ export enum ReportStatus {
   CANCELLED = 'CANCELLED',
 }
 
-registerEnumType(ReportStatus, { name: 'ReportStatus' });
+registerEnumType(ReportStatus, {name: 'ReportStatus'});

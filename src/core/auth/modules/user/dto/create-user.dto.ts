@@ -1,5 +1,5 @@
-import { UserRoles } from '../enums/user-roles.enum';
-import { UserGenders } from '@/core/auth/modules/user/enums/user-genders.enum';
+import {UserRoles} from '../enums/user-roles.enum';
+import {UserGenders} from '@/core/auth/modules/user/enums/user-genders.enum';
 
 export class CreateUserDto {
   readonly email: string;
