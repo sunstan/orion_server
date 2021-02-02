@@ -4,8 +4,9 @@ import {BlockRepository} from './block.repository';
 
 @Injectable()
 export class BlockService {
-  constructor(
-    @InjectRepository(BlockRepository)
-    readonly repository: BlockRepository,
-  ) {}
+    constructor(
+        @InjectRepository(BlockRepository)
+        readonly repository: BlockRepository,
+    ) {
+    }
 }

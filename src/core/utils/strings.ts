@@ -1,4 +1,4 @@
-import {hash, genSalt, compare} from 'bcrypt';
+import {compare, genSalt, hash} from 'bcrypt';
 
 export const encrypt = async (
     str: string,
@@ -6,4 +6,4 @@ export const encrypt = async (
 ): Promise<string> => await hash(str, await genSalt(saltRounds));
 
 export const matching = async (str: string, hash: string): Promise<boolean> =>
-  await compare(str, hash);
+    await compare(str, hash);

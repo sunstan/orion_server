@@ -6,11 +6,11 @@ import {BlockService} from './block.service';
 import {AuthModule} from '@/core/auth/auth.module';
 
 @Module({
-  imports: [
-    forwardRef(() => AuthModule),
-    TypeOrmModule.forFeature([BlockRepository]),
-  ],
-  providers: [BlockResolver, BlockService],
-  exports: [BlockService],
+    imports: [
+        forwardRef(() => AuthModule),
+        TypeOrmModule.forFeature([BlockRepository]),
+    ],
+    providers: [BlockResolver, BlockService],
+    exports: [BlockService],
 })
 export class BlockModule {}

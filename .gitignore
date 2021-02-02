@@ -1,6 +1,5 @@
 # compiled output
 /dist
-/templates
 /node_modules
 
 # Logs

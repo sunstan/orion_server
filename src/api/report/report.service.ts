@@ -4,8 +4,9 @@ import {ReportRepository} from './report.repository';
 
 @Injectable()
 export class ReportService {
-  constructor(
-    @InjectRepository(ReportRepository)
-    readonly repository: ReportRepository,
-  ) {}
+    constructor(
+        @InjectRepository(ReportRepository)
+        readonly repository: ReportRepository,
+    ) {
+    }
 }

@@ -4,8 +4,9 @@ import {PostRepository} from './post.repository';
 
 @Injectable()
 export class PostService {
-  constructor(
-    @InjectRepository(PostRepository)
-    readonly repository: PostRepository,
-  ) {}
+    constructor(
+        @InjectRepository(PostRepository)
+        readonly repository: PostRepository,
+    ) {
+    }
 }

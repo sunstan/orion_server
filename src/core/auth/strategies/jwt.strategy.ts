@@ -8,20 +8,20 @@ import {User} from '../modules/user/user.entity';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(
-    readonly authService: AuthService,
-    readonly configService: ConfigService,
-  ) {
-    super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: configService.get<string>('AUTH_SECRET'),
-      ignoreExpiration: false,
-    });
-  }
+    constructor(
+        readonly authService: AuthService,
+        readonly configService: ConfigService,
+    ) {
+        super({
+            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+            secretOrKey: configService.get<string>('AUTH_SECRET'),
+            ignoreExpiration: false,
+        });
+    }
 
-  validate = async (payload: AuthPayloadDto): Promise<User> => {
-    const user = await this.authService.getUser(payload);
-    if (!user) throw new UnauthorizedException('User not found');
-    return user;
-  };
+    validate = async (payload: AuthPayloadDto): Promise<User> => {
+        const user = await this.authService.getUser(payload);
+        if (!user) throw new UnauthorizedException('User not found');
+        return user;
+    };
 }

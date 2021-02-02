@@ -4,5 +4,6 @@ import {Profile} from './profile.entity';
 
 @Resolver(() => Profile)
 export class ProfileResolver {
-  constructor(readonly profileService: ProfileService) {}
+    constructor(readonly profileService: ProfileService) {
+    }
 }

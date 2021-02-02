@@ -8,13 +8,13 @@ import {PostModule} from './post/post.module';
 import {ProfileModule} from './profile/profile.module';
 
 @Module({
-  imports: [
-    // INJECT_TEMPLATE_MODULE
-    ReportModule,
-    BlockModule,
-    LikeModule,
-    PostModule,
-    ProfileModule,
-  ],
+    imports: [
+        // INJECT_TEMPLATE_MODULE
+        ReportModule,
+        BlockModule,
+        LikeModule,
+        PostModule,
+        ProfileModule,
+    ],
 })
 export class ApiModule {}

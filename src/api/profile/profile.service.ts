@@ -4,8 +4,9 @@ import {ProfileRepository} from './profile.repository';
 
 @Injectable()
 export class ProfileService {
-  constructor(
-    @InjectRepository(ProfileRepository)
-    readonly repository: ProfileRepository,
-  ) {}
+    constructor(
+        @InjectRepository(ProfileRepository)
+        readonly repository: ProfileRepository,
+    ) {
+    }
 }

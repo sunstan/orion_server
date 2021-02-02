@@ -1,3 +1,3 @@
 export class UpdateSessionDto {
-  readonly isValid: boolean;
+    readonly isValid: boolean;
 }
